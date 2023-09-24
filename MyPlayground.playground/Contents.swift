@@ -107,4 +107,60 @@ func maximumNumberOfStringPairs(arr: [String])->Int{
     }
      return count/2
 }
-print(maximumNumberOfStringPairs(arr:["aa","ab"]))
+//print(maximumNumberOfStringPairs(arr:["aa","ab"]))
+
+
+
+//Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+//
+//An input string is valid if:
+//
+//Open brackets must be closed by the same type of brackets.
+//Open brackets must be closed in the correct order.
+//Every close bracket has a corresponding open bracket of the same type.
+//func isValid(_ s: String) -> Bool {
+//    var count = 0
+//    let valid=["()","[]","{}"]
+//    var pairs: [String] = []
+//    for (i,char) in s.enumerated() {
+//        var nextEle = (i+1)
+//        if i == 0 || i%2 == 0{
+//            pairs.append(String(char) + s[s.index(s.startIndex, offsetBy: i + 1)])
+//        }
+//    }
+//    for i in pairs {
+//        if valid.contains(i){
+//            count+=1
+//        }
+//
+//    }
+//    if count == pairs.count {
+//        return true
+//
+//    }
+//    return false
+//}
+
+
+func isValid(_ s: String) -> Bool {
+    let validPairs = ["()","[]","{}"]
+    var pairs: [String] = []
+
+    var index = s.startIndex
+
+    while index < s.endIndex {
+        let currentChar = s[index]
+        index = s.index(after: index)
+
+        // Check if we have a valid pair starting at the current character
+        if let pair = validPairs.first(where: { $0.first == currentChar }) {
+            pairs.append(pair)
+        }
+    }
+
+    return pairs.joined() == s
+}
+
+// Example usage:
+//print(isValid("{}[](")) // Output: true
+print(isValid("{[()]}"))
