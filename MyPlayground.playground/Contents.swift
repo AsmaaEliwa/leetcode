@@ -36,7 +36,7 @@ func isEmpty<T: Collection>(_ arg: T)-> Bool{
 //Input: nums = [2,1,3]
 //Output: 2
 //Explanation: Since 2 is neither the maximum nor the minimum value in nums, it is the only valid answer.
-func findNonMinOrMax(_ nums: [Int]) -> Int {
+func findNonMinOrMax(nums: [Int]) -> Int {
    var minNum = nums.min()
     var maxNum = nums.max()
     for i in nums{
@@ -48,8 +48,8 @@ func findNonMinOrMax(_ nums: [Int]) -> Int {
   }
 
 
-//print (findNonMinOrMax([1,2,3,4]))
-//print (findNonMinOrMax([1,2]))
+//print (findNonMinOrMax(nums: [1,2,3,4]))
+//print (findNonMinOrMax(nums: [1,2]))
 
 
 
@@ -96,15 +96,15 @@ func maximumNumberOfStringPairs(arr: [String])->Int{
 //
 //    }
     var filterd = arr.filter { s in
-         s != 
+        s != String(s.reversed())
     }
     
     for s in arr {
-        if filterd.contains(s){
+        if filterd.contains(String(s.reversed())){
             count+=1
         }
         
     }
-    return count
+     return count/2
 }
-print(maximumNumberOfStringPairs(arr:["ab","ba","cd"]))
+print(maximumNumberOfStringPairs(arr:["aa","ab"]))
