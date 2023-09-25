@@ -163,4 +163,39 @@ func isValid(_ s: String) -> Bool {
 
 // Example usage:
 //print(isValid("{}[](")) // Output: true
-print(isValid("{[()]}"))
+//print(isValid("{[()]}"))
+
+
+//You are given an integer n that consists of exactly 3 digits.
+//
+//We call the number n fascinating if, after the following modification, the resulting number contains all the digits from 1 to 9 exactly once and does not contain any 0's:
+//
+//Concatenate n with the numbers 2 * n and 3 * n.
+//Return true if n is fascinating, or false otherwise.
+
+
+func isFascinating(_ n: Int) -> Bool {
+    if n <= 0 || n > 3333333333 {
+          return false
+      }
+    var dictionary: [Int : Int] = [:]
+    var num = String(n) + String( n*2) + String(n*3)
+    for  i in num {
+        if let  k =  Int(String(i)) {
+            if let count = dictionary[k] {
+                dictionary[k] = count + 1
+            }else {
+                dictionary[k] = 1
+            }
+        }}
+    var keys = Array(dictionary.keys)
+    var values = Array(dictionary.values)
+    if keys.contains(0){
+        return false
+    }
+    return keys.count == 9 && values.allSatisfy { $0 == 1 }
+    
+}
+
+isFascinating(100)
+isFascinating(192)
