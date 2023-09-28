@@ -191,6 +191,7 @@ func isFascinating(_ n: Int) -> Bool {
     var keys = Array(dictionary.keys)
     var values = Array(dictionary.values)
     if keys.contains(0){
+        
         return false
     }
     return keys.count == 9 && values.allSatisfy { $0 == 1 }
