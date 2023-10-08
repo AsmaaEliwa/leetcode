@@ -341,4 +341,60 @@ func minOperations(_ nums: [Int], _ k: Int) -> Int {
     }
     return holder.count
  }
-minOperations([3,2,5,3,1] , 3)
+//minOperations([3,2,5,3,1] , 3)
+
+
+
+
+//You are given a binary string s that contains at least one '1'.
+//You have to rearrange the bits in such a way that the resulting binary number is the maximum odd binary number that can be created from this combination.
+//Return a string representing the maximum odd binary number that can be created from the given combination.
+//Note that the resulting string can have leading zeros.
+func hasOns(s:String)->Int{
+    var count = 0
+    for i in s {
+        if i == "1"{
+            count+=1
+        }
+    }
+    return count
+}
+print(hasOns(s: "100"))
+func maximumOddBinaryNumber(_ s: String) -> String {
+    var newStr = "1"
+    if s.count == 1{
+        return s
+    }
+    var ones = hasOns(s: s)
+    var zeros = s.count - ones
+    if zeros > 0{
+        for _ in 1...zeros{
+            newStr.append("0")
+        }}
+    if ones - 1 > 0{
+        for _ in 1...ones-1{
+            newStr.append("1")
+        }
+        
+    }
+    var i = newStr.count-1
+    var result = ""
+    while i >= 0 {
+        var index = newStr.index(newStr.startIndex , offsetBy: i)
+        result.append(newStr[index])
+        i-=1
+    }
+ 
+    return result
+ }
+//print(maximumOddBinaryNumber("11")
+
+
+
+
+
+
+//You are given a 0-indexed integer array nums and an integer k.
+//Return an integer that denotes the sum of elements in nums whose corresponding indices have exactly k set bits in their binary representation.
+//The set bits in an integer are the 1's present when it is written in binary.
+//For example, the binary representation of 21 is 10101, which has 3 set bits.
