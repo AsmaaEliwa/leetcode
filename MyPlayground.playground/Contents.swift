@@ -296,7 +296,7 @@ func triples(arr:[Int])->[[Int]]{
     return holder
 }
 
-print(triples(arr: [12,6,1,2,7]))
+//print(triples(arr: [12,6,1,2,7]))
 
 
 func maximumTripletValue(_ nums: [Int]) -> Int {
@@ -309,4 +309,36 @@ func maximumTripletValue(_ nums: [Int]) -> Int {
     }
     return max
  }
-print(maximumTripletValue([1,2,3]))
+//print(maximumTripletValue([1,2,3]))
+
+
+//You are given an array nums of positive integers and an integer k.
+//In one operation, you can remove the last element of the array and add it to your collection.
+//Return the minimum number of operations needed to collect elements 1, 2, ..., k
+func TotallyIn(fromZeroToK:[Int] ,deletedEles:[Int] )-> Bool{
+    var count = 0
+    for i in Set(deletedEles) {
+        if fromZeroToK.contains(i){
+            count+=1
+        }
+    }
+    if count == fromZeroToK.count{
+        return true
+    }else {
+        return false
+    }
+    
+}
+func minOperations(_ nums: [Int], _ k: Int) -> Int {
+    var myNums = nums
+    let fromZeroToK = Array(1...k)
+    var  holder: [Int] = []
+    while !TotallyIn(fromZeroToK:fromZeroToK ,deletedEles:holder ){
+        if  let lasEle = myNums.popLast() {
+            holder.append(lasEle)
+        }
+       
+    }
+    return holder.count
+ }
+minOperations([3,2,5,3,1] , 3)
