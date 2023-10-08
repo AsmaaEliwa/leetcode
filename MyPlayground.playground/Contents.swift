@@ -277,5 +277,36 @@ func differenceOfSums(_ n: Int, _ m: Int) -> Int {
      return num1 - num2
  }
 
-print(differenceOfSums( 10, 3))
-print(differenceOfSums( 5, 1))
+//print(differenceOfSums( 10, 3))
+//print(differenceOfSums( 5, 1))
+
+
+//You are given a 0-indexed integer array nums.
+//Return the maximum value over all triplets of indices (i, j, k) such that i < j < k. If all such triplets have a negative value, return 0.
+//The value of a triplet of indices (i, j, k) is equal to (nums[i] - nums[j]) * nums[k].
+func triples(arr:[Int])->[[Int]]{
+    var holder: [[Int]] = []
+    for i in 0..<arr.count {
+        for j in i+1..<arr.count{
+            for k in j+1..<arr.count{
+                holder.append([arr[i],arr[j],arr[k]])
+            }
+        }
+    }
+    return holder
+}
+
+print(triples(arr: [12,6,1,2,7]))
+
+
+func maximumTripletValue(_ nums: [Int]) -> Int {
+    var triples = triples(arr: nums)
+    var max = 0
+    for arr in triples{
+        if (arr[0] - arr[1]) * arr[2] > max {
+            max = (arr[0] - arr[1] ) * arr[2]
+        }
+    }
+    return max
+ }
+print(maximumTripletValue([1,2,3]))
