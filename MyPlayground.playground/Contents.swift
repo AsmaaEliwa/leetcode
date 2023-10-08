@@ -198,5 +198,61 @@ func isFascinating(_ n: Int) -> Bool {
     
 }
 
-isFascinating(100)
-isFascinating(192)
+//isFascinating(100)
+//isFascinating(192)
+
+
+
+
+
+//
+//You are given a 0-indexed integer array nums. A pair of indices i, j where 0 <= i < j < nums.length is called beautiful if the first digit of nums[i] and the last digit of nums[j] are coprime.
+//Return the total number of beautiful pairs in nums.
+//Two integers x and y are coprime if there is no integer greater than 1 that divides both of them. In other words, x and y are coprime if gcd(x, y) == 1, where gcd(x, y) is the greatest common divisor of x and y.
+func coprime(a:Int , b:Int)->Bool{
+    var max = 0
+    if a > b {
+        max = a
+    }else {
+        max = b
+    }
+    for i in 2...max{
+        if a % i == 0 && b % i == 0 {
+            return false
+        }
+    }
+    return true
+}
+//print(coprime(a: 8 , b:4))
+//print(coprime(a: 8 , b:15))
+func firstDigit(a:Int)->Int{
+    for i in  String(a) {
+       return Int(String(i)) ?? 0
+    }
+    return 0
+}
+//firstDigit(a:32)
+func lastDigit(b:Int)->Int{
+  return b % 10
+}
+
+//print(lastDigit(b:32))
+func countBeautifulPairs(_ nums: [Int]) -> Int {
+    var count = 0
+    for (i , ele1) in nums.enumerated() {
+        for (j , ele2) in nums.enumerated() {
+            if j>i && j < nums.count {
+                if coprime(a:firstDigit(a:nums[i]),b: lastDigit(b:nums[j])){
+                    count+=1
+                }
+                
+            }
+            
+            
+        }
+    }
+     return count
+ }
+    print( countBeautifulPairs([2,5,1,4]))  //5
+
+print(countBeautifulPairs([11,21,12])) // 2
