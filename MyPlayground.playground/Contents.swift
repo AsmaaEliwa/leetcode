@@ -253,6 +253,29 @@ func countBeautifulPairs(_ nums: [Int]) -> Int {
     }
      return count
  }
-    print( countBeautifulPairs([2,5,1,4]))  //5
+//    print( countBeautifulPairs([2,5,1,4]))  //5
 
-print(countBeautifulPairs([11,21,12])) // 2
+//print(countBeautifulPairs([11,21,12])) // 2
+
+
+//You are given positive integers n and m.
+//Define two integers, num1 and num2, as follows:
+//num1: The sum of all integers in the range [1, n] that are not divisible by m.
+//num2: The sum of all integers in the range [1, n] that are divisible by m.
+//Return the integer num1 - num2.
+
+func differenceOfSums(_ n: Int, _ m: Int) -> Int {
+    var num1 = 0
+    var num2 = 0
+    for i  in 1...n{
+        if i % m != 0{
+            num1+=i
+        }else{
+            num2+=i
+        }
+    }
+     return num1 - num2
+ }
+
+print(differenceOfSums( 10, 3))
+print(differenceOfSums( 5, 1))
