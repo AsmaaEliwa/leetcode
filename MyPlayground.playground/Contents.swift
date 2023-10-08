@@ -398,3 +398,41 @@ func maximumOddBinaryNumber(_ s: String) -> String {
 //Return an integer that denotes the sum of elements in nums whose corresponding indices have exactly k set bits in their binary representation.
 //The set bits in an integer are the 1's present when it is written in binary.
 //For example, the binary representation of 21 is 10101, which has 3 set bits.
+
+func toBinary(num:Int)->String{
+    var newStr = ""
+    if num == 0 {return ""}
+    var myNum = num
+    var arr: [Int] = [1]
+    for i in 1...num{
+        var value = 1
+        for _ in 1...i{
+            value*=2
+        }
+        arr.append(value)
+    }
+    var i = arr.count-1
+//    print(arr)
+    while i>=0 {
+        if arr[i] <= myNum {
+            newStr.append("1")
+            myNum-=arr[i]
+        }
+            i-=1
+    }
+    return newStr
+}
+//print(toBinary(num: 4))
+func sumIndicesWithKSetBits(_ nums: [Int], _ k: Int) -> Int {
+    var count = 0
+    for (i,e) in nums.enumerated() {
+//        print(toBinary(num: i+1).count)
+        if toBinary(num: i).count == k {
+//            print(  toBinary(num: i+1).count  , e)
+            count+=e
+        }
+    }
+    return count
+}
+//var nums = [187,691,248,824,733,593,926,600,187,452,913,192,602,474,634,347,785,702,671,93,43,652,104,476,159,352,450,1,761,828,462,428,24,688,303,830,684,109,455,239,708,912,466,751,694,25,584,982,577,601,857,242,768,20,49,99,120,675,832,662,334,435,687,347,341,498]
+//print(sumIndicesWithKSetBits(nums,4))
