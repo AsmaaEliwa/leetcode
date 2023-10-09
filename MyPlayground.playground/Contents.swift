@@ -436,3 +436,55 @@ func sumIndicesWithKSetBits(_ nums: [Int], _ k: Int) -> Int {
 }
 //var nums = [187,691,248,824,733,593,926,600,187,452,913,192,602,474,634,347,785,702,671,93,43,652,104,476,159,352,450,1,761,828,462,428,24,688,303,830,684,109,455,239,708,912,466,751,694,25,584,982,577,601,857,242,768,20,49,99,120,675,832,662,334,435,687,347,341,498]
 //print(sumIndicesWithKSetBits(nums,4))
+
+
+
+
+
+
+//You are given a 0-indexed array nums of length n containing distinct positive integers. Return the minimum number of right shifts required to sort nums and -1 if this is not possible.
+
+func minimumRightShifts(_ nums: [Int]) -> Int {
+    var myArr = nums
+     var sorted = true
+    if myArr != myArr.sorted(){
+        sorted = false
+    }
+    var count = 0
+    while !sorted {
+        sorted = true
+        if let lastEle = myArr.popLast(){
+            myArr.insert(lastEle, at: 0)
+            count+=1
+        }
+        if myArr != myArr.sorted(){
+            sorted = false
+        }
+        if count == nums.count && sorted == false{
+            return -1
+        }
+        
+        
+ 
+     
+    }
+    return count
+ }
+
+print(minimumRightShifts([2,1,4]))
+
+
+//You are given a 0-indexed 2D integer array nums representing the coordinates of the cars parking on a number line. For any index i, nums[i] = [starti, endi] where starti is the starting point of the ith car and endi is the ending point of the ith car.
+//Return the number of integer points on the line that are covered with any part of a car.
+
+
+func numberOfPoints(_ nums: [[Int]]) -> Int {
+    var holder: [Int] = []
+    for i in nums {
+        for j in i[0]...i[1]{
+            holder.append(j)
+        }
+    }
+    return Set(holder).count
+  }
+numberOfPoints([[1,3],[5,8]])
