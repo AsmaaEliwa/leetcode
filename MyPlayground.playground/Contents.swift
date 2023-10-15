@@ -544,4 +544,95 @@ func countSymmetricIntegers(_ low: Int, _ high: Int) -> Int {
     }
     return count
  }
-print(countSymmetricIntegers(1200,1230))
+//print(countSymmetricIntegers(1200,1230))
+
+
+
+//
+//You are given two strings s1 and s2, both of length 4, consisting of lowercase English letters.
+//You can apply the following operation on any of the two strings any number of times:
+//Choose any two indices i and j such that j - i = 2, then swap the two characters at those indices in the string.
+//Return true if you can make the strings s1 and s2 equal, and false otherwise.
+//Example 1:
+//Input: s1 = "abcd", s2 = "cdab"
+//Output: true
+//Explanation: We can do the following operations on s1:
+//- Choose the indices i = 0, j = 2. The resulting string is s1 = "cbad".
+//- Choose the indices i = 1, j = 3. The resulting string is s1 = "cdab" = s2.
+//Example 2:
+//Input: s1 = "abcd", s2 = "dacb"
+//Output: false
+//Explanation: It is not possible to make the two strings equal.
+func swapStr(_ s:String)->String{
+    var newStr = ""
+    var c1 = s[s.index(s.startIndex, offsetBy: 0)]
+    var c2 = s[s.index(s.startIndex, offsetBy: 1)]
+    var c3 = s[s.index(s.startIndex, offsetBy: 2)]
+    var c4 = s[s.index(s.startIndex, offsetBy: 3)]
+    newStr = String(c3) + String(c4) + String(c1) + String(c2)
+ return newStr
+}
+print(swapStr("bnxw"))  //cdab
+
+func canBeEqual(_ s1: String, _ s2: String) -> Bool {
+    if s1.count != 4 || s2.count != 4 {
+        return false
+    }
+    
+    if swapStr(s1) == s2  || swapStr(s2) == s1{
+        return true
+    }
+    
+    
+    
+    
+    return false
+}
+
+//print(canBeEqual("bnxw","bwxn"))
+//print(canBeEqual("abcd","dacb"))
+
+
+
+//You are given an integer array nums and two positive integers m and k.
+//Return the maximum sum out of all almost unique subarrays of length k of nums. If no such subarray exists, return 0.
+//A subarray of nums is almost unique if it contains at least m distinct elements.
+//A subarray is a contiguous non-empty sequence of elements within an array.
+//Example 1:
+//Input: nums = [2,6,7,3,1,7], m = 3, k = 4
+//Output: 18
+//Explanation: There are 3 almost unique subarrays of size k = 4. These subarrays are [2, 6, 7, 3], [6, 7, 3, 1], and [7, 3, 1, 7]. Among these subarrays, the one with the maximum sum is [2, 6, 7, 3] which has a sum of 18.
+
+func subs(_ arr: [Int] ,_ m:Int ,_ k:Int )-> [[Int]]{
+    var holder: [[Int]] = []
+    var result: [[Int]] = []
+    for i in 0..<arr.count{
+        for j in i..<arr.count{
+            holder.append(Array(arr[i...j]))
+        }
+    }
+    
+    for array in holder{
+        if array.count == k && Set(array).count >= m {
+            result.append(array)
+        }
+    }
+    
+    
+    
+    return result
+}
+//print(subs([5,9,9,2,4,5,4] , 1, 3))
+func maxSum(_ nums: [Int], _ m: Int, _ k: Int) -> Int {
+var subs = subs(nums,m , k)
+    var sums:[Int] = []
+    for array in subs {
+        var sum = 0
+        for i in array{
+            sum+=i
+        }
+        sums.append(sum)
+    }
+    return sums.max() ?? 0
+ }
+print(maxSum([2,6,7,3,1,7], 3, 4))
